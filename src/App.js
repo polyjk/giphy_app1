@@ -14,7 +14,7 @@ function App() {
   const [showAll, setShowAll] = useState(true);
   const API_KEY = process.env.REACT_APP_API_KEY;
 
-  //useEffect hook will request 3 trending gifs on initial render.
+  //useEffect hook will request 3 trending gifs on initial render
   useEffect(() => {
     axios
       .get(
