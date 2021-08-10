@@ -18,6 +18,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 .Item {
@@ -25,6 +27,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
   padding: 1%;
   margin: 1%;
   border-style: solid;
@@ -33,7 +36,9 @@
 }
 
 .Video {
-  padding: 2%;
+  border-style: solid;
+  border-color: lightslategray;
+  margin-bottom: 2%;
 }
 
 .CopyButton {
