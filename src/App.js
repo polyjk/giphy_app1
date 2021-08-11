@@ -14,6 +14,35 @@ function App() {
   const [showAll, setShowAll] = useState(true);
   const API_KEY = process.env.REACT_APP_API_KEY;
 
+  //UseEffect hook for delayed search after typing
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (textValue !== "") {
+        console.log("Input value length != 0");
+
+        //Encode query parameters
+        const encodedQueryParam = encodeURIComponent(textValue);
+
+        axios
+          .get(
+            `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${encodedQueryParam}&limit=25&offset=0&rating=g&lang=en`
+          )
+          .then((response) => {
+            console.log("promise fufilled");
+            console.log(response);
+
+            createGifsList(response);
+            setShowAll(false);
+          })
+          .catch((error) => {
+            alert(`Error: ${error}.`);
+          });
+      }
+    }, 3000);
+
+    return () => clearTimeout(delayDebounce);
+  }, [textValue]); // eslint-disable-line react-hooks/exhaustive-deps
+
   //useEffect hook will request 3 trending gifs on initial render
   useEffect(() => {
     axios
